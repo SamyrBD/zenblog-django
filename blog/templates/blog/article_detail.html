@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} | ZenBlog{% endblock %}
+
+{% block content %}
+    <article>
+        <h2>{{ article.title }}</h2>
+        
+        <p class="article-meta">
+            Por {{ article.author.get_full_name|default:article.author.username }} en <strong>{{ article.category.name }}</strong>
+            el {{ article.publication_date|date:"d M Y" }}
+        </p>
+        
+        <div class="article-content">
+            {{ article.content|linebreaks }}
+        </div>
+    </article>
+{% endblock %}

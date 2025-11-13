@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | ZenBlog{% endblock %}
+
+{% block content %}
+    <h2>Últimos Artículos</h2>
+    {% for article in articles %}
+        <article class="article-item">
+            <h3><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h3>
+            
+            <p class="article-meta">
+                Por {{ article.author.get_full_name|default:article.author.username }} en <strong>{{ article.category.name }}</strong>
+                el {{ article.publication_date|date:"d M Y" }}
+            </p>
+            
+            <p class="article-excerpt">{{ article.content|truncatewords:30|linebreaks }}</p>
+            
+            <a href="{% url 'article_detail' article.pk %}" class="read-more">Leer más &rarr;</a>
+        </article>
+    {% empty %}
+        <p>No hay artículos para mostrar.</p>
+    {% endfor %}
+{% endblock %}
