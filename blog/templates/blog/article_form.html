@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Publicar Artículo{% endblock %}
+{% block content %}
+    <h2>Publica un nuevo artículo</h2>
+    <p>Tu contribución será revisada y asignada a nuestro equipo editorial.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Publicar Artículo</button>
+    </form>
+{% endblock %}

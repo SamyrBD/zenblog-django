@@ -1,169 +1,218 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}ZenBlog{% endblock %}</title>
     <style>
-    /* 1. Fuente y Fondo */
+    /* VARIABLES GLOBALES */
+    :root {
+        --color-primary: #0e93a4ff; /* Cian Principal (Enlaces, Acentos) */
+        --color-accent: #2bd1aaff; /* Verde Menta (Acento al Hover) */
+        --color-background: #F0F4F8; /* Gris Nube Suave */
+        --color-text-dark: #2C3E50; /* Texto Principal */
+        --color-text-light: #546E7A; /* Metadatos */
+        --font-main: 'Poppins', sans-serif; /* Tipografía moderna y compacta */
+    }
+
+    /* 1. FONDO Y TIPOGRAFÍA (COMPACTA) */
     body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        background-color: #f4f7f6; /* Un gris muy suave */
-        color: #333;
+        font-family: var(--font-main);
+        line-height: 1.6;
+        color: var(--color-text-dark);
+        background-color: var(--color-background);
         margin: 0;
-        line-height: 1.7; /* Mejora la legibilidad */
+        padding: 0;
+        /* Fondo de Paz Mental: Reemplaza la URL */
+        background-image: url('URL_DE_TU_IMAGEN_DE_PAZ_MENTAL'); 
+        background-attachment: fixed;
+        background-size: cover;
+        background-blend-mode: overlay; /* Mezcla el color de fondo con la imagen */
     }
 
-    /* 2. Contenedor Principal */
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        background-color: #ffffff;
-        border-radius: 12px; /* Bordes más suaves */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra más sutil */
-        overflow: hidden; /* Para que el contenido respete el borde */
+    /* 2. ENLACES GENERALES (COHESIÓN) */
+    a {
+        /* Color base de todos los enlaces: Cian Principal */
+        color: var(--color-primary); 
+        text-decoration: none; 
+        transition: color 0.2s ease;
     }
 
-    /* 3. Encabezado */
-    header {
-        padding: 2rem 2.5rem;
-        border-bottom: 2px solid #eee;
-        text-align: center;
-    }
-    header h1 {
-        margin: 0;
-        color: #2c3e50;
-    }
-    header h1 a {
-        text-decoration: none;
-        color: inherit;
-        font-weight: 700;
-    }
-    header p {
-        font-size: 1.1rem;
-        color: #777;
-        margin-top: 0.5rem;
-    }
-
-    /* 4. Navegación */
-    nav {
-        padding: 1rem 0;
-        text-align: center;
-        background-color: #fafafa;
-        border-bottom: 1px solid #eee;
-    }
-    nav a {
-        text-decoration: none;
-        color: #3498db;
-        margin: 0 15px;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-    nav a:hover {
-        color: #2980b9; /* Color al pasar el mouse */
-    }
-
-    /* 5. Contenido Principal (Artículos) */
-    .content {
-        padding: 1rem 2.5rem 2rem 2.5rem; /* Más espaciado */
-    }
-    
-    /* Estilos para los artículos (reemplaza los inline) */
-    .article-item {
-        border-bottom: 1px solid #eee;
-        padding-bottom: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    .article-item h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-    }
-    .article-item h3 a {
-        text-decoration: none;
-        color: #3498db;
-        font-size: 1.5rem;
-        transition: color 0.3s ease;
-    }
-    .article-item h3 a:hover {
-        color: #2980b9;
-    }
-    .article-meta {
-        font-size: 0.9em;
-        color: #777;
-        margin-bottom: 1rem;
-    }
-    .article-excerpt {
-        font-size: 1rem;
-        color: #555;
-    }
-    .read-more {
-        font-weight: bold;
-        color: #3498db;
-        text-decoration: none;
-    }
-    .read-more:hover {
+    a:hover {
+        color: var(--color-accent); /* Verde Menta al pasar el mouse */
         text-decoration: underline;
     }
 
-    /* Estilos para el detalle del artículo */
-    .article-content {
-        margin-top: 20px;
-        font-size: 1.1rem; /* Texto del artículo más grande */
-        color: #444;
+    /* 3. CONTENEDOR PRINCIPAL (RELLENO) */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px; /* Aumentado para rellenar mejor el espacio */
+        background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente para legibilidad */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        min-height: 100vh;
+        border-radius: 5px;
     }
 
-    /* 6. Footer */
+    /* 4. ENCABEZADOS Y NAVEGACIÓN */
+    h1, h2, h3 {
+        font-family: var(--font-main);
+        font-weight: 700; /* Peso alto para que se sientan sólidos */
+        color: var(--color-text-dark);
+    }
+    
+    header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 3px solid var(--color-accent);
+    }
+
     footer {
         text-align: center;
-        padding: 20px;
-        margin-top: 20px;
-        font-size: 0.9em;
-        color: #aaa;
     }
 
-    /* 7. Formulario (Bonus) */
-    form {
-        line-height: 1.8;
+    h1 {
+        font-size: 2.8em;
+        color: var(--color-primary);
+        letter-spacing: 1px;
+        margin-bottom: 5px;
     }
-    form input[type="text"], form input[type="email"], form textarea {
-        width: 95%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 10px;
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
     }
-    form button {
-        background-color: #3498db;
+
+    nav a {
+        color: var(--color-text-dark);
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+        background-color: var(--color-primary);
         color: white;
-        padding: 12px 20px;
+    }
+    
+    /* Enlaces de Creación (Más Vistosos) */
+    nav a[href*="/new/"] { 
+        color: var(--color-accent) !important;
+        border: 2px solid var(--color-accent);
+    }
+    nav a[href*="/new/"]:hover {
+        background-color: var(--color-accent);
+        color: var(--color-text-dark) !important;
+        border-color: var(--color-text-dark);
+    }
+
+    /* 5. ARTÍCULOS Y LISTAS */
+    .article-summary {
+        background-color: white;
+        padding: 25px; /* Más padding para rellenar */
+        margin-bottom: 30px;
+        border-radius: 10px;
+        border-left: 5px solid var(--color-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s;
+    }
+
+    .article-summary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Título del Artículo en la Lista (Enlace corregido) */
+    .article-summary h2 a {
+        color: var(--color-text-dark); /* Color oscuro para el título */
+        font-weight: 700;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .article-summary h2 a:hover {
+        color: var(--color-primary); /* Cian solo al hacer hover */
+    }
+
+    .article-metadata {
+        font-size: 0.9em;
+        color: var(--color-text-light);
+        margin-top: -5px;
+        margin-bottom: 15px;
+    }
+
+    /* 6. BOTONES Y FORMULARIOS */
+    button, input[type="submit"] {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 10px 20px;
         border: none;
-        border-radius: 4px;
+        border-radius: 5px;
         cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
+        font-size: 1em;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        margin-top: 15px;
     }
-    form button:hover {
-        background-color: #2980b9;
+
+    button:hover, input[type="submit"]:hover {
+        background-color: #008C9E;
     }
+    
+    form p { margin-bottom: 15px; }
+    form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: var(--color-text-dark);
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form textarea,
+    form select,
+    form input[type="file"] { /* Añadido input[type="file"] */
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #CFD8DC;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1em;
+        transition: border-color 0.3s;
+    }
+    form input:focus, form textarea:focus, form select:focus {
+        border-color: var(--color-primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+    }
+
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1><a href="{% url 'article_list' %}">ZenBlog</a></h1>
-            <p>Un espacio para tu bienestar mental</p>
-        </header>
-        <nav>
-            <a href="{% url 'article_list' %}">Inicio</a>
-            <a href="{% url 'contact' %}">Contacto</a> </nav>
-        
-        <main class="content">
-            {% block content %}
-            {% endblock %}
-        </main>
+      <header>
+        <h1><a href="{% url 'article_list' %}">ZenBlog</a></h1>
+        <p>Un espacio para tu bienestar mental</p>
+      </header>
+      <nav>
+        <a href="{% url 'article_list' %}">Inicio</a>
+        <a href="{% url 'contact' %}">Contacto</a>
+
+        <a href="{% url 'article_create' %}" style="color: #2ecc71"
+          >+ Nuevo Artículo</a
+        >
+        <a href="{% url 'category_create' %}" style="color: #2ecc71"
+          >+ Nueva Categoría</a
+        >
+      </nav>
+
+      <main class="content">{% block content %} {% endblock %}</main>
     </div>
-    <footer>
-        <p>&copy; 2025 ZenBlog. Tarea de Universidad.</p>
+    <footer >
+      <p>&copy; 2025 ZenBlog. Tarea de Universidad.</p>
     </footer>
-</body>
-</html> 
+  </body>
+</html>
