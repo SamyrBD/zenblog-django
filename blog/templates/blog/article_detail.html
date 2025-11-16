@@ -1,18 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}{{ article.title }} | ZenBlog{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-    <article>
+    
+    <div class="article-detail-container">
+        
         <h2>{{ article.title }}</h2>
         
-        <p class="article-meta">
-            Por {{ article.author.get_full_name|default:article.author.username }} en <strong>{{ article.category.name }}</strong>
-            el {{ article.publication_date|date:"d M Y" }}
+        <p class="article-metadata">
+            Publicado por <strong>{{ article.author.username }}</strong> 
+            el {{ article.publication_date|date:"l, F d, Y" }}
+            en la categoría <strong>{{ article.category.name }}</strong>.
         </p>
         
         <div class="article-content">
-            {{ article.content|linebreaks }}
+            <p>{{ article.content|linebreaksbr }}</p>
         </div>
-    </article>
-{% endblock %}
+        
+        <p class="article-detail-metadata">
+            Gracias por leer.
+        </p>
+
+    </div> 
+    {% endblock %}

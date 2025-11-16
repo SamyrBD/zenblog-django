@@ -8,15 +8,15 @@
     <style>
     /* VARIABLES GLOBALES */
     :root {
-        --color-primary: #0e93a4ff; /* Cian Principal (Enlaces, Acentos) */
-        --color-accent: #2bd1aaff; /* Verde Menta (Acento al Hover) */
+        --color-primary: #1a94a4ff; /* Cian Principal (Enlaces, Acentos) */
+        --color-accent: #2ed0aaff; /* Verde Menta (Acento al Hover) */
         --color-background: #F0F4F8; /* Gris Nube Suave */
         --color-text-dark: #2C3E50; /* Texto Principal */
         --color-text-light: #546E7A; /* Metadatos */
         --font-main: 'Poppins', sans-serif; /* Tipografía moderna y compacta */
     }
 
-    /* 1. FONDO Y TIPOGRAFÍA (COMPACTA) */
+    /* 1. FONDO Y TIPOGRAFÍA */
     body {
         font-family: var(--font-main);
         line-height: 1.6;
@@ -28,28 +28,27 @@
         background-image: url('URL_DE_TU_IMAGEN_DE_PAZ_MENTAL'); 
         background-attachment: fixed;
         background-size: cover;
-        background-blend-mode: overlay; /* Mezcla el color de fondo con la imagen */
+        background-blend-mode: overlay; 
     }
 
     /* 2. ENLACES GENERALES (COHESIÓN) */
     a {
-        /* Color base de todos los enlaces: Cian Principal */
         color: var(--color-primary); 
         text-decoration: none; 
         transition: color 0.2s ease;
     }
 
     a:hover {
-        color: var(--color-accent); /* Verde Menta al pasar el mouse */
+        color: var(--color-accent); 
         text-decoration: underline;
     }
 
-    /* 3. CONTENEDOR PRINCIPAL (RELLENO) */
+    /* 3. CONTENEDOR PRINCIPAL */
     .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 40px; /* Aumentado para rellenar mejor el espacio */
-        background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semitransparente para legibilidad */
+        padding: 40px; 
+        background-color: rgba(255, 255, 255, 0.95);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         min-height: 100vh;
         border-radius: 5px;
@@ -58,7 +57,7 @@
     /* 4. ENCABEZADOS Y NAVEGACIÓN */
     h1, h2, h3 {
         font-family: var(--font-main);
-        font-weight: 700; /* Peso alto para que se sientan sólidos */
+        font-weight: 700;
         color: var(--color-text-dark);
     }
     
@@ -66,10 +65,6 @@
         text-align: center;
         padding-bottom: 20px;
         border-bottom: 3px solid var(--color-accent);
-    }
-
-    footer {
-        text-align: center;
     }
 
     h1 {
@@ -99,7 +94,7 @@
         color: white;
     }
     
-    /* Enlaces de Creación (Más Vistosos) */
+    /* Enlaces de Creación */
     nav a[href*="/new/"] { 
         color: var(--color-accent) !important;
         border: 2px solid var(--color-accent);
@@ -110,15 +105,23 @@
         border-color: var(--color-text-dark);
     }
 
-    /* 5. ARTÍCULOS Y LISTAS */
+    /* 5. DISEÑO DE TARJETAS (GRID LAYOUT) */
+    .article-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 30px; 
+        margin-top: 20px;
+    }
+    
     .article-summary {
         background-color: white;
-        padding: 25px; /* Más padding para rellenar */
-        margin-bottom: 30px;
+        padding: 20px;
         border-radius: 10px;
         border-left: 5px solid var(--color-primary);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         transition: transform 0.2s;
+        /* Estilos específicos para la tarjeta */
+        word-wrap: break-word; 
     }
 
     .article-summary:hover {
@@ -127,15 +130,16 @@
     }
     
     /* Título del Artículo en la Lista (Enlace corregido) */
-    .article-summary h2 a {
-        color: var(--color-text-dark); /* Color oscuro para el título */
+    .article-summary h3 a { /* Cambiado a h3 para usar en el grid */
+        color: var(--color-text-dark); 
         font-weight: 700;
         text-decoration: none;
+        font-size: 1.5em;
         transition: color 0.2s;
     }
 
-    .article-summary h2 a:hover {
-        color: var(--color-primary); /* Cian solo al hacer hover */
+    .article-summary h3 a:hover {
+        color: var(--color-primary); 
     }
 
     .article-metadata {
@@ -145,7 +149,44 @@
         margin-bottom: 15px;
     }
 
-    /* 6. BOTONES Y FORMULARIOS */
+    .read-more-link {
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: 600;
+    }
+
+    /* 6. ESTILO DE VISTA DE DETALLE (Artículo Único) */
+    .article-detail-container {
+        padding: 40px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-detail-container h2 {
+        font-size: 2.5em;
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-accent);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .article-detail-container .article-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        margin-top: 30px;
+        white-space: pre-wrap;
+    }
+
+    .article-detail-metadata {
+        font-size: 1em;
+        color: var(--color-text-light);
+        padding: 10px 0;
+        border-top: 1px dashed var(--color-background);
+        margin-top: 20px;
+    }
+
+    /* 7. BOTONES Y FORMULARIOS */
     button, input[type="submit"] {
         background-color: var(--color-primary);
         color: white;
@@ -173,8 +214,7 @@
     form input[type="text"],
     form input[type="email"],
     form textarea,
-    form select,
-    form input[type="file"] { /* Añadido input[type="file"] */
+    form select {
         width: 100%;
         padding: 12px;
         border: 1px solid #CFD8DC;
@@ -188,6 +228,22 @@
         outline: none;
         box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
     }
+
+    /* 8. DISEÑO RESPONSIVO (GRID) */
+    @media (max-width: 992px) {
+        .article-grid {
+            /* 2 columnas para tablets */
+            grid-template-columns: repeat(2, 1fr); 
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .article-grid {
+            /* 1 columna para móviles */
+            grid-template-columns: 1fr; 
+        }
+    }
+    </style>
 
     </style>
   </head>

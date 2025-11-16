@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Inicio | ZenBlog{% endblock %}
+{% block title %}Últimos Artículos | ZenBlog{% endblock %}
 
 {% block content %}
     <h2>Últimos Artículos</h2>
-    {% for article in articles %}
-        <article class="article-item">
-            <h3><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h3>
+    
+    <div class="article-grid"> 
+        {% for article in object_list %}
             
-            <p class="article-meta">
-                Por {{ article.author.get_full_name|default:article.author.username }} en <strong>{{ article.category.name }}</strong>
-                el {{ article.publication_date|date:"d M Y" }}
-            </p>
-            
-            <p class="article-excerpt">{{ article.content|truncatewords:30|linebreaks }}</p>
-            
-            <a href="{% url 'article_detail' article.pk %}" class="read-more">Leer más &rarr;</a>
-        </article>
-    {% empty %}
-        <p>No hay artículos para mostrar.</p>
-    {% endfor %}
-{% endblock %}
+            <div class="article-summary">
+                <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h3>
+                <p class="article-metadata">
+                    Publicado por {{ article.author.username }} el {{ article.publication_date|date:"F d, Y" }}
+                    | Categoría: {{ article.category.name }}
+                </p>
+                <p>{{ article.content|truncatewords:30 }}</p> 
+                <a href="{% url 'article_detail' pk=article.pk %}" class="read-more-link">Leer más &rarr;</a>
+            </div>
+
+        {% empty %}
+            <p>Aún no hay artículos publicados.</p>
+        {% endfor %}
+    </div> 
+    {% endblock %}
