@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 style="color: #ffca28;">🔥 Blog NoSQL (Firebase)</h2>
+    
+    <div style="margin-bottom: 20px;">
+        <a href="{% url 'nosql_create' %}" class="btn" style="background:#ffca28; color:black; padding:8px; text-decoration:none; margin-right:10px;">
+            + Crear Artículo
+        </a>
+        <a href="{% url 'nosql_category_create' %}" class="btn" style="border:2px solid #ffca28; color:black; padding:8px; text-decoration:none;">
+            + Crear Categoría
+        </a>
+    </div>
+
+    <div class="article-grid">
+        {% for article in articles %}
+        <div class="article-summary" style="border-left: 5px solid #ffca28;">
+            <h3><a href="{% url 'nosql_detail' article.id %}" style="color:#333;">{{ article.title }}</a></h3>
+            
+            <p class="article-metadata">
+                {{ article.date }} | {{ article.category }}
+            </p>
+            <p>{{ article.content|truncatewords:20 }}</p>
+            
+            <a href="{% url 'nosql_detail' article.id %}" style="font-weight:bold; color:#ffca28;">Leer más</a>
+        </div>
+        {% empty %}
+            <p>Cargando datos de la nube...</p>
+        {% endfor %}
+    </div>
+{% endblock %}

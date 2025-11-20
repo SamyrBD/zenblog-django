@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 style="color: #ffca28;">Crear Artículo en Firebase</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <p>
+            <label>Título:</label>
+            {{ form.title }}
+        </p>
+        <p>
+            <label>Contenido:</label>
+            {{ form.content }}
+        </p>
+        
+        <p>
+            <label>Categoría:</label>
+            <select name="category_select" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;">
+                <option value="Sin Categoría">Selecciona una categoría...</option>
+                {% for cat in categorias %}
+                    <option value="{{ cat.name }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <button type="submit" style="background-color: #ffca28; color: black; border:none; padding:10px 20px; cursor:pointer;">
+            Guardar en Nube
+        </button>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 style="color: #ffca28;">Nueva Categoría (NoSQL)</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: #ffca28; color: black;">Guardar Categoría</button>
+    </form>
+{% endblock %}

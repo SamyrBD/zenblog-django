@@ -4,8 +4,8 @@ from . import views
 from .views import (
     ArticleListView, 
     ArticleDetailView, 
-    ArticleCreateView,  # <-- Nueva
-    CategoryCreateView  # <-- Nueva
+    ArticleCreateView,
+    CategoryCreateView
 )
 
 urlpatterns = [

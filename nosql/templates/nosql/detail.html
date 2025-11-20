@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="background:white; padding:30px; border-radius:10px; border-top: 5px solid #ffca28;">
+    <h2 style="font-size: 2.5em;">{{ article.title }}</h2>
+    <p style="color: gray;">
+        Publicado el: {{ article.date }} | Categoría: <strong>{{ article.category }}</strong>
+    </p>
+    <hr>
+    <div style="margin-top: 20px; font-size: 1.2em; line-height: 1.6;">
+        {{ article.content|linebreaks }}
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="{% url 'nosql_list' %}" style="color:#ffca28; font-weight:bold;">&larr; Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

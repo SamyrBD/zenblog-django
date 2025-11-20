@@ -9,40 +9,20 @@ from django.contrib.auth.models import User
 
 class ArticleCreateView(CreateView):
     model = Article
-    form_class = ArticleForm # Usamos el ModelForm que ya teníamos
-    template_name = 'blog/article_form.html' # Un template para el formulario
-    
-    # URL a la que redirigir después de crear el artículo con éxito
+    form_class = ArticleForm
+    template_name = 'blog/article_form.html'
     success_url = reverse_lazy('article_list')
 
-    # --- EXPLICACIÓN CLAVE (PARA EL PROFESOR) ---
-    # Sobrescribimos el método 'form_valid'.
-    # Este método se llama DESPUÉS de que el formulario se valida
-    # pero ANTES de que el objeto se guarde en la base de datos.
     def form_valid(self, form):
-        # 1. 'form.instance' es el objeto Artículo en memoria.
-        #    Su campo 'author' está vacío.
         try:
-            # 2. Buscamos un 'author' por defecto (el admin/superusuario).
-            admin_user = User.objects.filter(is_superuser=True).first()
-            
-            # 3. Asignamos ese admin como el autor.
-            if admin_user:
-                form.instance.author = admin_user
-            else:
-                # Si no hay admin, la app está rota, pero evitamos el crash
-                return super().form_invalid(form)
-        except Exception as e:
-            # Manejar el error si User.objects falla
-            pass 
-        
-        # 4. Llamamos al 'super()' para que termine el proceso de guardado.
+            admin = User.objects.filter(is_superuser=True).first()
+            form.instance.author = admin 
+        except:
+            pass
         return super().form_valid(form)
 
-# --- VISTA PARA CREAR CATEGORÍAS (PÚBLICA) ---
 class CategoryCreateView(CreateView):
     model = Category
-    # Podemos definir los campos aquí mismo si no necesitamos un Form
     fields = ['name', 'description']
     template_name = 'blog/category_form.html'
     success_url = reverse_lazy('article_list')

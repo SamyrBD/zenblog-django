@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Incluye las URLs de la app 'blog' en la raíz del sitio
     path('', include('blog.urls')),
+    path('firebase/', include('nosql.urls')), # Tu blog NoSQL (/firebase/)
 ]
