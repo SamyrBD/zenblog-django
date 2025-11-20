@@ -10,7 +10,11 @@ db.sqlite3
 
 # Python
 __pycache__/
+*/__pycache__/
 *.pyc
 
 # Archivos de SO
 .DS_Store
+
+firebase_credentials.json
+*.json
